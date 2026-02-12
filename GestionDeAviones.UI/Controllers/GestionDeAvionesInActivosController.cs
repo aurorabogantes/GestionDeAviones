@@ -2,7 +2,7 @@
 
 namespace GestionDeAviones.UI.Controllers
 {
-    public class GestionDeAvionesInActivosController(ServicioApi servicioApi) : Controller)
+    public class GestionDeAvionesInActivosController(ServicioApi servicioApi) : Controller
     {
         readonly ServicioApi _servicioApi = servicioApi;
         // GET: GestionDeAvionesInActivosController
