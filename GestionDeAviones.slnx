@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GestionDeAviones.BL/GestionDeAviones.BL.csproj" />
+  <Project Path="GestionDeAviones.Model/GestionDeAviones.Model.csproj" />
+  <Project Path="GestionDeAviones/GestionDeAviones.SI.csproj" />
+</Solution>
