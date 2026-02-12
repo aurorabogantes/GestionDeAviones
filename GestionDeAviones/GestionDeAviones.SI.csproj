@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GestionDeAviones.BL\GestionDeAviones.BL.csproj" />
+    <ProjectReference Include="..\GestionDeAviones.DA\GestionDeAviones.DA.csproj" />
+    <ProjectReference Include="..\GestionDeAviones.Model\GestionDeAviones.Model.csproj" />
   </ItemGroup>
 
 </Project>
