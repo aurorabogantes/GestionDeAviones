@@ -2,5 +2,6 @@
   <Project Path="GestionDeAviones.BL/GestionDeAviones.BL.csproj" />
   <Project Path="GestionDeAviones.DA/GestionDeAviones.DA.csproj" />
   <Project Path="GestionDeAviones.Model/GestionDeAviones.Model.csproj" />
+  <Project Path="GestionDeAviones.UI/GestionDeAviones.UI.csproj" Id="3a756ba4-e711-4066-aa7c-7413d6df3dcd" />
   <Project Path="GestionDeAviones/GestionDeAviones.SI.csproj" />
 </Solution>
