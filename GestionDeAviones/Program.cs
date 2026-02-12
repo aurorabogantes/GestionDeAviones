@@ -1,3 +1,5 @@
+using GestionDeAviones.SI
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GestionDeAviones.BL;
+using GestionDeAviones.Model;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GestionDeAviones.SI.Controllers
 {
