@@ -38,14 +38,14 @@ namespace GestionDeAviones.UI
             var response = await client.GetAsync("api/ServicioDeAviones/ObtengaLaListaDeInActivos");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
-            var lista = JsonSerializer.Deserialize<List<Avion>>(result) ?? []:
+            var lista = JsonSerializer.Deserialize<List<Avion>>(result) ?? [];
             return lista;
         }
 
         public async Task<Avion?> ObtenerAvionPorIdAsync(int id)
         {
             var client = _httpClientFactory.CreateClient("AvionesApi");
-            var response = await client.GetAsync($"api/ServicioDeAviones/ObtengaElAvion?id={id}")
+            var response = await client.GetAsync($"api/ServicioDeAviones/ObtengaElAvion?id={id}");
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();

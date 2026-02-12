@@ -179,6 +179,7 @@ namespace GestionDeAviones.UI.Controllers
             {
                 ViewData["ProblemasAlDesaAtivar"] = true;
                 return RedirectToAction(nameof(Index));
+            }
         }
     }
 }
