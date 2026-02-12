@@ -42,7 +42,7 @@ namespace GestionDeAviones.UI
             return lista;
         }
 
-        public async Task<Avion?> ObtenerPersonaPorIdAsync(int id)
+        public async Task<Avion?> ObtenerAvionPorIdAsync(int id)
         {
             var client = _httpClientFactory.CreateClient("AvionesApi");
             var response = await client.GetAsync($"api/ServicioDeAviones/ObtengaElAvion?id={id}")
