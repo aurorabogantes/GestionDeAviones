@@ -33,7 +33,7 @@ namespace GestionDeAviones.SI.Controllers
         [HttpGet("ObtengaLaListaDeInActivos")]
         public async Task<ActionResult<IEnumerable<Avion>>> ObtengaLaListaDeInActivos()
         {
-            var lista = await _admin.ObtengaLaListaDeActivosAsync();
+            var lista = await _admin.ObtentaLaListaDeInActivosAsync();
             return Ok(lista);
         }
 

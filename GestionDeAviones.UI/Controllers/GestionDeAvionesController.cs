@@ -1,15 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace GestionDeAviones.UI.Controllers
 {
     public class GestionDeAvionesController(ServicioApi servicioApis) : Controller
     {
         private readonly ServicioApi _servicioApis = servicioApis;
-        private const string apiKey = "123456";
 
         // GET: GestionDeAvionesController
         public async Task<IActionResult> Index(string nombre)
@@ -43,17 +38,9 @@ namespace GestionDeAviones.UI.Controllers
         // GET: GestionDeAvionesController/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            Model.Avion avion;
             try
             {
-                var httpClient = new HttpClient();
-                httpClient.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
-
-                httpClient.BaseAddress = new Uri("https://localhost:7119");
-                var response = await httpClient.GetAsync($"api/ServicioDeAviones/ObtengaElAvion?id={id}");
-                response.EnsureSuccessStatusCode();
-                var result = await response.Content.ReadAsStringAsync();
-                avion = JsonSerializer.Deserialize<Model.Avion>(result);
+                var avion = await _servicioApis.ObtenerAvionPorIdAsync(id);
                 return View(avion);
             }
             catch (Exception ex)
@@ -75,14 +62,7 @@ namespace GestionDeAviones.UI.Controllers
         {
             try
             {
-                var httpClient = new HttpClient();
-                httpClient.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
-
-                httpClient.BaseAddress = new Uri("https://localhost:7119");
-                var json = JsonSerializer.Serialize(avion);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = httpClient.PostAsync("api/ServicioDeAviones/Agregue", content);
-
+                await _servicioApis.AgregarAvionAsync(avion);
                 ViewData["ProblemasAlInsertar"] = false;
                 return RedirectToAction(nameof(Index));
             }
@@ -96,18 +76,9 @@ namespace GestionDeAviones.UI.Controllers
         // GET: GestionDeAvionesController/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            Model.Avion avion;
-
             try
             {
-                var httpClient = new HttpClient();
-                httpClient.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
-
-                httpClient.BaseAddress = new Uri("https://localhost:7119");
-                var response = await httpClient.GetAsync($"api/ServicioDeAviones/ObtengaElAvion?id={id}");
-                response.EnsureSuccessStatusCode();
-                var result = await response.Content.ReadAsStringAsync();
-                avion = JsonSerializer.Deserialize<Model.Avion>(result);
+                var avion = await _servicioApis.ObtenerAvionPorIdAsync(id);
                 return View(avion);
             }
             catch (Exception ex)
@@ -123,18 +94,8 @@ namespace GestionDeAviones.UI.Controllers
         {
             try
             {
-                var httpClient = new HttpClient();
-                httpClient.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
-
-                httpClient.BaseAddress = new Uri("https://localhost:7119");
-
-                var json = JsonSerializer.Serialize(avion);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = httpClient.PutAsync("api/ServicioDeAviones/EditeElAvion", content).Result;
-                response.EnsureSuccessStatusCode();
-
+                await _servicioApis.EditarAvionesAsync(avion);
                 ViewData["ProblemasAlEditar"] = false;
-
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -144,16 +105,11 @@ namespace GestionDeAviones.UI.Controllers
             }
         }
 
-        public ActionResult Activar(int id)
+        public async Task<ActionResult> Activar(int id)
         {
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
-
             try
             {
-                httpClient.BaseAddress = new Uri("https://localhost:7119");
-                var response = httpClient.PutAsync($"api/ServicioDeAviones/Active?id={id}", null).Result;
-                response.EnsureSuccessStatusCode();
+                await _servicioApis.ActivarAvionAsync(id);
                 ViewData["ProblemasAlActivar"] = false;
                 return RedirectToAction(nameof(Index));
             }
@@ -164,16 +120,11 @@ namespace GestionDeAviones.UI.Controllers
             }
         }
 
-        public ActionResult DesActivar(int id)
+        public async Task<ActionResult> DesActivar(int id)
         {
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
-
             try
             {
-                httpClient.BaseAddress = new Uri("https://localhost:7119");
-                var response = httpClient.PutAsync($"api/ServicioDeAviones/DesActive?id={id}", null).Result;
-                response.EnsureSuccessStatusCode();
+                await _servicioApis.DesActivarAvionAsync(id);
                 ViewData["ProblemasAlDesaAtivar"] = false;
                 return RedirectToAction(nameof(Index));
             }

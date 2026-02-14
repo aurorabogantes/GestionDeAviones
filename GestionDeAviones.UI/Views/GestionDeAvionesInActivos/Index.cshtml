@@ -42,7 +42,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
-
+                <td>
+                    @Html.ActionLink("Activar", "Activar", "GestionDeAviones", new { id = item.Id }, new { @class = "btn btn-success" })
+                </td>
             </tr>
         }
     </tbody>
