@@ -69,6 +69,8 @@ namespace GestionDeAviones.UI.Controllers
         }
 
         // POST: GestionDeAvionesController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Model.Avion avion)
         {
             try
